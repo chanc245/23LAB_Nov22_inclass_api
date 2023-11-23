@@ -12,6 +12,7 @@
   <div>
     <input type="text" id="searchInput" placeholder="Search...">
     <button id="searchButton">Search</button>
+    <p>currently this webiste only have console.log output</p>
   </div>
   <script src="site.js"></script>
 
@@ -27,8 +28,25 @@
     const makeRequest = async function (searchTerm) {
       try {
         const response = await fetch(`${baseUrl}/search?q=${searchTerm}`);
-        const json = await response.json();
-        console.log(json);
+        const collection = await response.json();
+        console.log(collection);
+
+        // get total number and randomly pick a ID from the total result
+        console.log(`There are [${collection.total}] artworks in your search term [${searchTerm}] `);
+        let randomArtworkID = Math.floor(Math.random() * (collection.total + 1));
+        console.log(`A randonly selected artworkID [${randomArtworkID}] from [${collection.total}] artworks`)
+
+        // get that specific artwork
+        const artwork = await fetch(`${baseUrl}/objects/${collection.objectIDs[randomArtworkID]}`);
+        const artworkJson = await artwork.json()
+        console.log(artworkJson)
+
+        // some possible output 
+        console.log("Artist Name: " + artworkJson.artistDisplayName)
+        console.log("Department: " + artworkJson.department)
+        console.log("Accession Year: " + artworkJson.accessionYear)
+        console.log("Image Link: " + artworkJson.primaryImage)
+
       } catch (error) {
         console.error(error);
       }
