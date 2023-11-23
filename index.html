@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div>
+    <input type="text" id="searchInput" placeholder="Search...">
+    <button id="searchButton">Search</button>
+  </div>
+  <script src="site.js"></script>
+
+  <div id="result"></div>
+
+
+  <!-- -----JAVA SCRIPT----- -->
+  <!-- -----JAVA SCRIPT----- -->
+  <!-- -----JAVA SCRIPT----- -->
+  <script>
+    const baseUrl = "https://collectionapi.metmuseum.org/public/collection/v1";
+
+    const makeRequest = async function (searchTerm) {
+      try {
+        const response = await fetch(`${baseUrl}/search?q=${searchTerm}`);
+        const json = await response.json();
+        console.log(json);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    document.getElementById('searchButton').addEventListener('click', async function () {
+      const searchInput = document.getElementById('searchInput');
+      const searchTerm = searchInput.value;
+      await makeRequest(searchTerm);
+    });
+
+    document.getElementById('searchInput').addEventListener('keyup', async function (event) {
+      if (event.key === 'Enter') {
+        const searchTerm = event.target.value;
+        await makeRequest(searchTerm);
+      }
+    });
+  </script>
+</body>
+
+</html>
