@@ -14,7 +14,7 @@
     <button id="searchButton">Search</button>
     <p>currently this webiste only have console.log output</p>
   </div>
-  <script src="site.js"></script>
+  <!-- <script src="site.js"></script> -->
 
   <div id="result"></div>
 
@@ -29,7 +29,7 @@
       try {
         const response = await fetch(`${baseUrl}/search?q=${searchTerm}`);
         const collection = await response.json();
-        console.log(collection);
+        // console.log(collection);
 
         // get total number and randomly pick a ID from the total result
         console.log(`There are [${collection.total}] artworks in your search term [${searchTerm}] `);
@@ -39,7 +39,7 @@
         // get that specific artwork
         const artwork = await fetch(`${baseUrl}/objects/${collection.objectIDs[randomArtworkID]}`);
         const artworkJson = await artwork.json()
-        console.log(artworkJson)
+        // console.log(artworkJson)
 
         // some possible output 
         console.log("Artist Name: " + artworkJson.artistDisplayName)
