@@ -26,7 +26,7 @@ const makeRequest = async function (searchTerm) {
     console.log("Accession Year: " + artworkJson.accessionYear)
     console.log("Image Link: " + artworkJson.primaryImage)
 
-    //changing the html contents 
+    // changing the html contents 
     document.getElementById('result').textContent = `A randonly selected artworkID [${randomArtworkID}] from [${collection.total}] artworks`;
 
     document.getElementById('artistName').textContent = "Artist Name: " + checkValueOrNotFound(artworkJson.artistDisplayName);
